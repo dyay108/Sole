@@ -43,14 +43,15 @@ public class MainActivity extends AppCompatActivity {
                         if(!BA.isEnabled()){
                             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                             startActivityForResult(enableBtIntent, 0);
-                            Intent i = new Intent(MainActivity.this, DeviceList.class);
-                            startActivity(i);
-                            }
 
+                        }
 
 
                         else{Intent i = new Intent( MainActivity.this, DeviceList.class);
                             startActivity(i);}
+
+
+
 
 
 
@@ -59,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
         );
     }
+    protected void onActivityResult (int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK) {
+            Intent i = new Intent( MainActivity.this, DeviceList.class);
+            startActivity(i);
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
