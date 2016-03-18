@@ -42,8 +42,17 @@ public class MainActivity extends AppCompatActivity {
 
                         if(!BA.isEnabled()){
                             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                            startActivityForResult(enableBtIntent, 0);}
-                        else{}
+                            startActivityForResult(enableBtIntent, 0);
+                            Intent i = new Intent(MainActivity.this, DeviceList.class);
+                            startActivity(i);
+                            }
+
+
+
+                        else{Intent i = new Intent( MainActivity.this, DeviceList.class);
+                            startActivity(i);}
+
+
 
                     }
                 }
