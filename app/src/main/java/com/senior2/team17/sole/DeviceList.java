@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+
 import java.util.Set;
 
 public class DeviceList extends Activity {

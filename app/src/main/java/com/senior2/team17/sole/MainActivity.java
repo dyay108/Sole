@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter BA = BluetoothAdapter.getDefaultAdapter();
@@ -55,9 +56,30 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
                     }
                 }
 
+        );
+
+        Button viewStats = (Button) findViewById(R.id.data_button);
+        viewStats.setOnClickListener(
+                new Button.OnClickListener(){
+
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent i = new Intent( MainActivity.this, data.class);
+                        startActivity(i);
+
+
+                    }
+
+
+                }
         );
     }
     protected void onActivityResult (int requestCode, int resultCode, Intent data) {
