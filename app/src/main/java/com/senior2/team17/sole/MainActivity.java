@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+
         Button connect = (Button) findViewById(R.id.btconnect);
         connect.setOnClickListener(
                 new Button.OnClickListener(){

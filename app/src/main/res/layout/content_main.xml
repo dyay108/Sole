@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.senior2.team17.sole.MainActivity">
+    tools:context="com.senior2.team17.sole.MainActivity"
+    android:background="#00000000">
 
     <Button
         android:layout_width="wrap_content"
@@ -27,4 +28,18 @@
         android:id="@+id/data_button"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/electrisole"
+        android:alpha="0.5"
+        android:layout_alignBottom="@+id/btconnect"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="51dp" />
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp" />
+
 </RelativeLayout>
