@@ -3,6 +3,7 @@ package com.senior2.team17.sole;
 /**
  * Created by Dyay108 on 3/17/2016.
  */
+
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -20,8 +21,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-
+import java.util.ArrayList;
 import java.util.Set;
+
 
 public class DeviceList extends Activity {
 
@@ -30,6 +32,8 @@ public class DeviceList extends Activity {
     private BluetoothAdapter mBtAdapter;
 
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
+   // ArrayList<BluetoothAdapter> arrayOfAlreadyPairedBTDevices = null;
+    ArrayAdapter<String> arrayOfAlreadyPairedBTDevices = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +122,14 @@ public class DeviceList extends Activity {
         // Turn on sub-title for new devices
         findViewById(R.id.title_new_devices).setVisibility(View.VISIBLE);
 
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        this.registerReceiver(mReceiver, filter);
+        // Register for broadcasts when discovery has finished
+        filter = new IntentFilter(
+                BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        this.registerReceiver(mReceiver, filter);
+
+
         // If we're already discovering, stop it
         if (mBtAdapter.isDiscovering()) {
             mBtAdapter.cancelDiscovery();
@@ -154,11 +166,11 @@ public class DeviceList extends Activity {
      * The BroadcastReceiver that listens for discovered devices and changes the title when
      * discovery is finished
      */
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    /*private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
 
+            String action = intent.getAction();
             // When discovery finds a device
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 // Get the BluetoothDevice object from the Intent
@@ -176,6 +188,32 @@ public class DeviceList extends Activity {
                     mNewDevicesArrayAdapter.add(noDevices);
                 }
             }
+
+
+
+        }
+    };*/
+
+    // Create a BroadcastReceiver for ACTION_FOUND
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            // When discovery finds a device
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                // Get the BluetoothDevice object from the Intent
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                // Add the name and address to an array adapter to show in a ListView
+                mNewDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+            }
         }
     };
-}
+
+        // Register the BroadcastReceiver
+
+
+
+
+
+    }
+
+
